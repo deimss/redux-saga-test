@@ -1,6 +1,9 @@
 import logger from "redux-logger";
 import createSagaMiddleware from 'redux-saga'
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import { routerReducer } from 'react-router-redux';
+
+
 import math from "./reducers/mathReducer";
 import user from "./reducers/userReducer";
 import tracks from "./reducers/trackReducer";
@@ -14,7 +17,13 @@ const sagaMiddleware = createSagaMiddleware()
 
 
 export default createStore(
-  combineReducers({ math, user, tracks, filter, setAlarm }),
+  combineReducers({  
+  	routing: routerReducer, 
+  	math, 
+  	user, 
+  	tracks, 
+  	filter, 
+  	setAlarm }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(sagaMiddleware)
 );

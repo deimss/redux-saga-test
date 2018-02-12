@@ -9,7 +9,7 @@ import { clickAlarmButton } from '../actions/alarmAction';
 
 class App extends React.Component {
   render() {
-    console.log(this.props.tracks.nameSong)
+    console.log("ownProps", this.props.ownProps)
     return (
       <div className="container">
         <Main
@@ -25,13 +25,14 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     user: state.user,
     math: state.math,
     tracks: state.tracks,
     filter: state.filter,
-    alarm: state.setAlarm
+    alarm: state.setAlarm,
+    ownProps: ownProps
   };
 };
 
