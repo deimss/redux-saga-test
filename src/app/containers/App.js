@@ -5,6 +5,7 @@ import { TrackList } from "../components/TrackList";
 import { connect } from "react-redux";
 import { setName, setAge } from "../actions/userActions";
 import { setTrack, filterList, deleteTrack } from "../actions/trackAction";
+import { clickAlarmButton } from '../actions/alarmAction';
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Main
+          setAlarm={this.props.alarmClick}
           changeUsername={() => this.props.setName("Anna")}
           changeUserage={() => this.props.setAge(33)}
         />
@@ -28,7 +30,8 @@ const mapStateToProps = state => {
     user: state.user,
     math: state.math,
     tracks: state.tracks,
-    filter: state.filter
+    filter: state.filter,
+    alarm: state.setAlarm
   };
 };
 
@@ -48,6 +51,9 @@ const mapDispatchToProps = dispatch => {
     },
     deleteTrack: track => {
       dispatch(deleteTrack(track))
+    },
+    alarmClick: coords => {
+      dispatch(clickAlarmButton(coords))
     }
   };
 };
